@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class deathTriggerController : MonoBehaviour
+public class objectBinController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,9 +18,6 @@ public class deathTriggerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
-        {
-            Debug.Log("lol"); 
-        } 
+        Destroy(other.gameObject);
     }
 }
