@@ -20,7 +20,7 @@ public class deathTriggerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("lol"); 
+            //Debug.Log("lol"); 
         } 
     }
 }
