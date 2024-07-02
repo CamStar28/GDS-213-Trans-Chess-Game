@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class pawnTileCheck : MonoBehaviour
 {
-
-    public GameObject playerPawn;
-    public string triggerTag;
-
+    
     public bool tileHasPiece;
     public bool tileHasWall; 
     
@@ -26,10 +23,19 @@ public class pawnTileCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "EnemyPawn")
+        if(other.gameObject.layer == 6)
         {
-            //give Pawn power up
             tileHasPiece = true;
+        } else if(other.gameObject.tag == "Wall") 
+        { 
+            tileHasWall = true; 
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        tileHasPiece = false;
+        tileHasWall = false; 
+    }
+
 }

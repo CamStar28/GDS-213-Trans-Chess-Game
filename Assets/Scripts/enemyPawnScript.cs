@@ -6,28 +6,29 @@ public class enemyPawnScript : MonoBehaviour
 {
 
     public Renderer pawnRenderer;
-    
-    public float boardScrollSpeed;
+
+    public float pawnScrollSpeed;
     public GameObject speedController;
 
-    public Rigidbody boardBody;
+    public Rigidbody pawnBody;
 
     // Start is called before the first frame update
     void Start()
     {
-        boardScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+        pawnScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        boardBody.velocity = new Vector3(0, 0, boardScrollSpeed);
+        pawnBody.velocity = new Vector3(0, 0, pawnScrollSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            other.gameObject.GetComponent<playerController>().pawnPowerUps += 1;
             StartCoroutine(Fade());
             Debug.Log("absolutely pawned upon");
         }
@@ -40,7 +41,9 @@ public class enemyPawnScript : MonoBehaviour
         {
             c.a = alpha;
             pawnRenderer.material.color = c;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.01f);
         }
+
+        Destroy(gameObject);
     }
 }

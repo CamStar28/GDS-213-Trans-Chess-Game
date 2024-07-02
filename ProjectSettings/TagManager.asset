@@ -8,6 +8,7 @@ TagManager:
   - EnemyKnight
   - EnemyBishop
   - EnemyRook
+  - Wall
   layers:
   - Default
   - TransparentFX
