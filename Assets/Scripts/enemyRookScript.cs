@@ -1,26 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class enemyRookScript : MonoBehaviour
 {
     public Renderer rookRenderer;
 
-    public float rookScrollSpeed;
-    public GameObject speedController;
+    //public float rookScrollSpeed;
+    //public GameObject speedController;
 
     public Rigidbody rookBody;
+
+    public GameObject intervalLink;
+    public float intervalTimer;
+    
+    public bool canMove;
+    public bool isMovingRight;
+    public bool hasBeenCaptured; 
+
+    public float moveSpeed = 5f;
+    public Transform movePoint;
+
+    public GameObject leftCheck;
+    public GameObject rightCheck;
 
     // Start is called before the first frame update
     void Start()
     {
-        rookScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+        //rookScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+        intervalTimer = intervalLink.GetComponent<playerController>().intervalTime;
+        
+        canMove = false;
+        isMovingRight = false; 
+        hasBeenCaptured = false;
+
+        movePoint.parent = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rookBody.velocity = new Vector3(0, 0, rookScrollSpeed);
+        //rookBody.velocity = new Vector3(0, 0, rookScrollSpeed);
+
+        intervalTimer += Time.deltaTime; 
+        if(intervalTimer >= 1.19f && intervalTimer < 1.2f)
+        {
+            canMove = true;  
+        } else if (intervalTimer >= 1.2f)
+        {
+            canMove = false;
+            intervalTimer = 0; 
+        }
+
+        if(leftCheck.GetComponent<pieceTileCheck>().tileOccupied == true)
+        {
+            isMovingRight = true;
+        }
+        
+        if (rightCheck.GetComponent<pieceTileCheck>().tileOccupied == true)
+        {
+            isMovingRight = false;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, movePoint.position) == 0f && canMove == true && hasBeenCaptured == false)
+        {
+            if(isMovingRight == true)
+            {
+                movePoint.position += new Vector3(1f, 0f, 0f);
+            } else
+            {
+                movePoint.position += new Vector3(-1f, 0f, 0f);
+            }
+
+            canMove = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +91,8 @@ public class enemyRookScript : MonoBehaviour
 
     IEnumerator Fade()
     {
+        hasBeenCaptured = true;
+        
         Color c = rookRenderer.material.color;
         for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
         {

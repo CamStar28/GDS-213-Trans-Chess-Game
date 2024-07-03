@@ -212,6 +212,73 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &246597434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 246597435}
+  - component: {fileID: 246597437}
+  - component: {fileID: 246597438}
+  m_Layer: 7
+  m_Name: Rook Left Check (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &246597435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246597434}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.082814, y: 0, z: 0.25156438}
+  m_LocalScale: {x: 1.09375, y: 1.09375, z: 1.09375}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 264805649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &246597437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246597434}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &246597438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246597434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348f6e102c742f4cb4fb518fd26e102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileOccupied: 0
 --- !u!1 &264805645
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +413,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1026056491}
+  - {fileID: 246597435}
+  - {fileID: 1305670256}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
 --- !u!114 &264805650
@@ -361,9 +430,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rookRenderer: {fileID: 264805646}
-  rookScrollSpeed: 0
-  speedController: {fileID: 1726498329}
   rookBody: {fileID: 264805647}
+  intervalLink: {fileID: 1727173792}
+  intervalTimer: 0
+  canMove: 0
+  isMovingRight: 0
+  moveSpeed: 5
+  movePoint: {fileID: 1026056491}
+  leftCheck: {fileID: 246597434}
+  rightCheck: {fileID: 1305670255}
 --- !u!1 &266637823
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +718,7 @@ GameObject:
   - component: {fileID: 382132675}
   - component: {fileID: 382132677}
   - component: {fileID: 382132676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,7 +996,7 @@ GameObject:
   - component: {fileID: 480782647}
   - component: {fileID: 480782649}
   - component: {fileID: 480782648}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Up Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1766,7 +1841,7 @@ Transform:
   m_GameObject: {fileID: 1026056490}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03437475, y: -15.456252, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.09375, y: 1.09375, z: 1.09375}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1893,7 +1968,7 @@ GameObject:
   - component: {fileID: 1216821946}
   - component: {fileID: 1216821947}
   - component: {fileID: 1216821948}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Up Left Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2310,6 +2385,73 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277815373}
   m_CullTransparentMesh: 1
+--- !u!1 &1305670255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305670256}
+  - component: {fileID: 1305670258}
+  - component: {fileID: 1305670259}
+  m_Layer: 7
+  m_Name: Rook Right Check (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1305670256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305670255}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.1515636, y: 0, z: 0.25156438}
+  m_LocalScale: {x: 1.09375, y: 1.09375, z: 1.09375}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 264805649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1305670258
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305670255}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1305670259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305670255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8348f6e102c742f4cb4fb518fd26e102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileOccupied: 0
 --- !u!1 &1349914412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2614,7 @@ GameObject:
   - component: {fileID: 1376306716}
   - component: {fileID: 1376306718}
   - component: {fileID: 1376306717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3650,7 +3792,7 @@ GameObject:
   - component: {fileID: 1806585457}
   - component: {fileID: 1806585458}
   - component: {fileID: 1806585459}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Up Right Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
