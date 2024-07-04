@@ -6,21 +6,79 @@ public class enemyBishopScript : MonoBehaviour
 {
     public Renderer bishopRenderer;
 
-    public float bishopScrollSpeed;
-    public GameObject speedController;
+    //public float bishopScrollSpeed;
+    //public GameObject speedController;
 
     public Rigidbody bishopBody;
+
+    public GameObject intervalLink;
+    public float intervalTimer;
+
+    public bool canMove;
+    public bool isMovingRight;
+    public bool hasBeenCaptured;
+
+    public float moveSpeed = 5f;
+    public Transform movePoint;
+
+    public GameObject leftCheck;
+    public GameObject rightCheck;
 
     // Start is called before the first frame update
     void Start()
     {
-        bishopScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+        //bishopScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+
+        intervalTimer = intervalLink.GetComponent<playerController>().intervalTime;
+
+        canMove = false;
+        isMovingRight = true;
+        hasBeenCaptured = false;
+
+        movePoint.parent = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        bishopBody.velocity = new Vector3(0, 0, bishopScrollSpeed);
+        //bishopBody.velocity = new Vector3(0, 0, bishopScrollSpeed);
+
+        intervalTimer += Time.deltaTime;
+        if (intervalTimer >= 1.19f && intervalTimer < 1.2f)
+        {
+            canMove = true;
+        }
+        else if (intervalTimer >= 1.2f)
+        {
+            canMove = false;
+            intervalTimer = 0;
+        }
+
+        if (leftCheck.GetComponent<pieceTileCheck>().tileOccupied == true)
+        {
+            isMovingRight = true;
+        }
+
+        if (rightCheck.GetComponent<pieceTileCheck>().tileOccupied == true)
+        {
+            isMovingRight = false;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, movePoint.position) == 0f && canMove == true && hasBeenCaptured == false)
+        {
+            if (isMovingRight == true)
+            {
+                movePoint.position += new Vector3(1f, 0f, -1f);
+            }
+            else
+            {
+                movePoint.position += new Vector3(-1f, 0f, -1f);
+            }
+
+            canMove = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

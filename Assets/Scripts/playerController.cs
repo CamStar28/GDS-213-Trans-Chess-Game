@@ -41,7 +41,14 @@ public class playerController : MonoBehaviour
     public TextMeshProUGUI rookPowerUpUI;
     
     public TextMeshProUGUI powerUpArrow;
-    public int arrowPosition; 
+    public int arrowPosition;
+
+    public SpriteRenderer playerRenderer;
+    public Sprite pawnSprite;
+    public Sprite knightSprite;
+    public Sprite bishopSprite;
+    public Sprite rookSprite; 
+
 
     // Start is called before the first frame update
     void Start()
@@ -136,6 +143,65 @@ public class playerController : MonoBehaviour
                 arrowPosition += 1;
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if(arrowPosition == 0)
+            {
+                if(pawnPowerUps > 0)
+                {
+                    Debug.Log("become pawn");
+                    pawnPowerUps -= 1;
+                    playerRenderer.sprite = pawnSprite; 
+                } else
+                {
+                    Debug.Log("got no pawns girl"); 
+                }
+            }
+
+            if (arrowPosition == 1)
+            {
+                if (knightPowerUps > 0)
+                {
+                    Debug.Log("become knight");
+                    knightPowerUps -= 1;
+                    playerRenderer.sprite = knightSprite;
+                }
+                else
+                {
+                    Debug.Log("got no knights girl");
+                }
+            }
+
+            if (arrowPosition == 2)
+            {
+                if (bishopPowerUps > 0)
+                {
+                    Debug.Log("become bishop");
+                    bishopPowerUps -= 1;
+                    playerRenderer.sprite = bishopSprite;
+                }
+                else
+                {
+                    Debug.Log("got no bishops girl");
+                }
+            }
+
+            if (arrowPosition == 3)
+            {
+                if (rookPowerUps > 0)
+                {
+                    Debug.Log("become rook");
+                    rookPowerUps -= 1;
+                    playerRenderer.sprite = rookSprite;
+                }
+                else
+                {
+                    Debug.Log("got no rooks girl");
+                }
+            }
+        }
+
 
         if(arrowPosition == 0)
         {

@@ -18,6 +18,9 @@ public class objectBinController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
+        if (other.gameObject.layer != 7)
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
