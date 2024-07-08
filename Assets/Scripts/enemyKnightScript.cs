@@ -31,6 +31,8 @@ public class enemyKnightScript : MonoBehaviour
     {
         //knightScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
 
+        intervalLink = GameObject.FindGameObjectWithTag("Player");
+
         intervalTimer = intervalLink.GetComponent<playerController>().intervalTime;
 
         canMove = false;
@@ -114,6 +116,7 @@ public class enemyKnightScript : MonoBehaviour
         {
             other.gameObject.GetComponent<playerController>().knightPowerUps += 1;
             StartCoroutine(Fade());
+            hasBeenCaptured = true;
             Debug.Log("absolutely knighted upon");
         }
     }

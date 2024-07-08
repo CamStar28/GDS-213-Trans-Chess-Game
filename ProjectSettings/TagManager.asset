@@ -9,6 +9,7 @@ TagManager:
   - EnemyBishop
   - EnemyRook
   - Wall
+  - Speed
   layers:
   - Default
   - TransparentFX

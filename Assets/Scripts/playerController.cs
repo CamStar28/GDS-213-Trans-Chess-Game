@@ -47,7 +47,22 @@ public class playerController : MonoBehaviour
     public Sprite pawnSprite;
     public Sprite knightSprite;
     public Sprite bishopSprite;
-    public Sprite rookSprite; 
+    public Sprite rookSprite;
+
+    public int playerPiece;
+
+    public GameObject doubleUpCheck;
+
+    public GameObject farRightCheck; 
+    public GameObject farLeftCheck;
+    public GameObject topRightCheck; 
+    public GameObject topLeftCheck;
+
+    public GameObject bishopLeftCheck; 
+    public GameObject bishopRightCheck;
+
+    public GameObject rookLeftCheck;
+    public GameObject rookRightCheck;
 
 
     // Start is called before the first frame update
@@ -89,7 +104,7 @@ public class playerController : MonoBehaviour
 
             intervalIndicator.value = intervalBar;
 
-            if(intervalTime >= 0.8f && intervalTime < 0.81f)
+            if(intervalTime >= 0.8f && intervalTime < 0.801f)
             {
                 canMove = true; 
             } else if (intervalTime >= 1.2f)
@@ -103,31 +118,160 @@ public class playerController : MonoBehaviour
             
             if(Vector3.Distance(transform.position, movePoint.position) == 0f && canMove == true)
             {
-                if (Input.GetKeyDown(KeyCode.D) && rightCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && rightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                if(playerPiece == 0)
                 {
-                    movePoint.position += new Vector3(1f, 0f, 0f);
-                    canMove = false;
-                    //Debug.Log(movePoint.position);
+                    if (Input.GetKeyDown(KeyCode.D) && rightCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && rightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(1f, 0f, 0f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
 
-                } else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
-                {
-                    movePoint.position += new Vector3(-1f, 0f, 0f);
-                    canMove = false;
-                    //Debug.Log(movePoint.position);
+                    }
+                    else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-1f, 0f, 0f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
 
-                } else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    }
+                    else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(0f, 0f, 1f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+                    }
+                    else if (Input.GetKey(KeyCode.E) && upRightCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(1f, 0f, 1f);
+                        canMove = false;
+                    }
+                    else if (Input.GetKey(KeyCode.Q) && upLeftCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-1f, 0f, 1f);
+                        canMove = false;
+                    }
+                } else if(playerPiece == 1)
                 {
-                    movePoint.position += new Vector3(0f, 0f, 1f);
-                    canMove = false;
-                    //Debug.Log(movePoint.position);
-                } else if (Input.GetKey(KeyCode.E) && upRightCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    if (Input.GetKeyDown(KeyCode.D) && rightCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && rightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(1f, 0f, 0f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-1f, 0f, 0f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(0f, 0f, 2f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+                    }
+                    else if (Input.GetKey(KeyCode.E) && upRightCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(1f, 0f, 1f);
+                        canMove = false;
+                    }
+                    else if (Input.GetKey(KeyCode.Q) && upLeftCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-1f, 0f, 1f);
+                        canMove = false;
+                    }
+                } else if(playerPiece == 2)
                 {
-                    movePoint.position += new Vector3(1f, 0f, 1f); 
-                    canMove = false;
-                } else if (Input.GetKey(KeyCode.Q) && upLeftCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    if (Input.GetKeyDown(KeyCode.D) && farRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(2f, 0f, 1f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.A) && farLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-2f, 0f, 1f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+
+                    }
+                    else if (Input.GetKey(KeyCode.E) && topRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(1f, 0f, 2f);
+                        canMove = false;
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+                    }
+                    else if (Input.GetKey(KeyCode.Q) && topLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-1f, 0f, 2f);
+                        canMove = false;
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+                    }
+                } else if(playerPiece == 3)
                 {
-                    movePoint.position += new Vector3(-1f, 0f, 1f);
-                    canMove = false;
+                    if (Input.GetKey(KeyCode.E) && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false && bishopRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(2f, 0f, 2f);
+                        canMove = false;
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+                    }
+                    else if (Input.GetKey(KeyCode.Q) && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false && bishopRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-2f, 0f, 2f);
+                        canMove = false;
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+                    }
+                } else if(playerPiece == 4)
+                {
+                    if (Input.GetKeyDown(KeyCode.D) && rightCheck.GetComponent<pawnTileCheck>().tileHasWall == false && rookRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(2f, 0f, 0f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false && rookLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(-2f, 0f, 0f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+
+                    }
+                    else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
+                    {
+                        movePoint.position += new Vector3(0f, 0f, 2f);
+                        canMove = false;
+                        //Debug.Log(movePoint.position);
+                        playerPiece = 0;
+                        //playerRenderer.sprite = pawnSprite;
+                        moveSpeed = 5f;
+                    }
                 }
             }
         }
@@ -151,8 +295,9 @@ public class playerController : MonoBehaviour
                 if(pawnPowerUps > 0)
                 {
                     Debug.Log("become pawn");
+                    playerPiece = 1; 
                     pawnPowerUps -= 1;
-                    playerRenderer.sprite = pawnSprite; 
+                    playerRenderer.sprite = pawnSprite;
                 } else
                 {
                     Debug.Log("got no pawns girl"); 
@@ -164,8 +309,10 @@ public class playerController : MonoBehaviour
                 if (knightPowerUps > 0)
                 {
                     Debug.Log("become knight");
+                    playerPiece = 2;
                     knightPowerUps -= 1;
                     playerRenderer.sprite = knightSprite;
+                    moveSpeed = 10f;
                 }
                 else
                 {
@@ -178,8 +325,10 @@ public class playerController : MonoBehaviour
                 if (bishopPowerUps > 0)
                 {
                     Debug.Log("become bishop");
+                    playerPiece = 3;
                     bishopPowerUps -= 1;
                     playerRenderer.sprite = bishopSprite;
+                    moveSpeed = 10f;
                 }
                 else
                 {
@@ -192,8 +341,10 @@ public class playerController : MonoBehaviour
                 if (rookPowerUps > 0)
                 {
                     Debug.Log("become rook");
+                    playerPiece = 4;
                     rookPowerUps -= 1;
                     playerRenderer.sprite = rookSprite;
+                    moveSpeed = 10f;
                 }
                 else
                 {

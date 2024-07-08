@@ -29,6 +29,9 @@ public class enemyRookScript : MonoBehaviour
     void Start()
     {
         //rookScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+        
+        intervalLink = GameObject.FindGameObjectWithTag("Player");
+
         intervalTimer = intervalLink.GetComponent<playerController>().intervalTime;
         
         canMove = false;
@@ -85,6 +88,7 @@ public class enemyRookScript : MonoBehaviour
         {
             other.gameObject.GetComponent<playerController>().rookPowerUps += 1;
             StartCoroutine(Fade());
+            hasBeenCaptured = true;
             Debug.Log("absolutely rooked upon");
         }
     }

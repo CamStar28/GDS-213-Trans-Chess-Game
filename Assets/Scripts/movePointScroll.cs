@@ -12,6 +12,8 @@ public class movePointScroll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speedController = GameObject.FindGameObjectWithTag("Speed");
+
         pointScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
     }
 

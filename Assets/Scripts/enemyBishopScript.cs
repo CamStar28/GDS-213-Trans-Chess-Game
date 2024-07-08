@@ -29,6 +29,8 @@ public class enemyBishopScript : MonoBehaviour
     {
         //bishopScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
 
+        intervalLink = GameObject.FindGameObjectWithTag("Player");
+
         intervalTimer = intervalLink.GetComponent<playerController>().intervalTime;
 
         canMove = false;
@@ -87,6 +89,7 @@ public class enemyBishopScript : MonoBehaviour
         {
             other.gameObject.GetComponent<playerController>().bishopPowerUps += 1;
             StartCoroutine(Fade());
+            hasBeenCaptured = true;
             Debug.Log("absolutely bishoped upon");
         }
     }
