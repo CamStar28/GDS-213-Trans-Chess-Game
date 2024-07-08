@@ -3699,7 +3699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75feee596e4a33344af8a6afe1d8fa2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 0
+  scrollSpeed: -1
 --- !u!4 &1726498331
 Transform:
   m_ObjectHideFlags: 0

@@ -173,7 +173,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
                     }
                     else if (Input.GetKey(KeyCode.E) && upRightCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
@@ -194,7 +194,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && farLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -204,7 +204,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
 
                     }
                     else if (Input.GetKey(KeyCode.E) && topRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -213,7 +213,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
                     }
                     else if (Input.GetKey(KeyCode.Q) && topLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
@@ -221,7 +221,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
                     }
                 } else if(playerPiece == 3)
                 {
@@ -231,7 +231,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
                     }
                     else if (Input.GetKey(KeyCode.Q) && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false && bishopRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
@@ -239,7 +239,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
                     }
                 } else if(playerPiece == 4)
                 {
@@ -250,7 +250,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false && rookLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -260,7 +260,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
 
                     }
                     else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -270,7 +270,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
-                        moveSpeed = 5f;
+                        StartCoroutine(speedResetCooldown(1f));
                     }
                 }
             }
@@ -382,6 +382,12 @@ public class playerController : MonoBehaviour
                 gameIsPaused = false;
             }
         }
+    }
+
+    IEnumerator speedResetCooldown(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        moveSpeed = 5f; 
     }
 
 }
