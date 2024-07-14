@@ -15,8 +15,8 @@ public class enemyPawnScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speedController = GameObject.FindGameObjectWithTag("Speed"); 
-        
+        speedController = GameObject.FindGameObjectWithTag("Speed");
+
         pawnScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
     }
 

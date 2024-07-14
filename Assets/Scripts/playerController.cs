@@ -195,6 +195,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && farLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -205,6 +206,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
 
                     }
                     else if (Input.GetKey(KeyCode.E) && topRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -214,6 +216,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
                     }
                     else if (Input.GetKey(KeyCode.Q) && topLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
@@ -222,6 +225,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
                     }
                 } else if(playerPiece == 3)
                 {
@@ -232,6 +236,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
                     }
                     else if (Input.GetKey(KeyCode.Q) && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false && bishopRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
@@ -240,6 +245,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
                     }
                 } else if(playerPiece == 4)
                 {
@@ -251,6 +257,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false && rookLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -261,6 +268,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
 
                     }
                     else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -271,6 +279,7 @@ public class playerController : MonoBehaviour
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
+                        StartCoroutine(spriteReset(0.25f));
                     }
                 }
             }
@@ -388,6 +397,12 @@ public class playerController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         moveSpeed = 5f; 
+    }
+
+    IEnumerator spriteReset(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        playerRenderer.sprite = pawnSprite; 
     }
 
 }
