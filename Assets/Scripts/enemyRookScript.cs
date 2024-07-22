@@ -35,10 +35,15 @@ public class enemyRookScript : MonoBehaviour
         intervalTimer = intervalLink.GetComponent<playerController>().intervalTime;
         
         canMove = false;
-        isMovingRight = false; 
+        isMovingRight = true; 
         hasBeenCaptured = false;
 
         movePoint.parent = null;
+
+        if (transform.position.x >= 0.55)
+        {
+            isMovingRight = false;
+        }
     }
 
     // Update is called once per frame
@@ -86,10 +91,22 @@ public class enemyRookScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<playerController>().rookPowerUps += 1;
+            if (other.GetComponent<playerController>().canCapture == true)
+            {
+                other.gameObject.GetComponent<playerController>().rookPowerUps += 1;
+                StartCoroutine(Fade());
+                hasBeenCaptured = true;
+                Debug.Log("absolutely rooked upon");
+            }
+            else
+            {
+                StartCoroutine(other.gameObject.GetComponent<playerController>().TakeDamage());
+                Destroy(gameObject);
+            }
+        }
+        else if (other.gameObject.layer == 6)
+        {
             StartCoroutine(Fade());
-            hasBeenCaptured = true;
-            Debug.Log("absolutely rooked upon");
         }
     }
 

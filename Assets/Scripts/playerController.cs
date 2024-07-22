@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour
     
     //public Rigidbody playerBody; 
     public bool gameIsPaused;
+    public GameObject pauseMenu; 
 
     public float moveSpeed = 5f;
     public Transform movePoint;
@@ -20,6 +21,8 @@ public class playerController : MonoBehaviour
     public bool canMove;
     public Slider intervalIndicator;
     public float intervalBar;
+
+    public bool isStunned;
 
     //public LayerMask enemyPiecesLayer;
     //pretty sure this is no longer needed, but keeping it here just in case. Remember to delete later CAM 
@@ -30,6 +33,8 @@ public class playerController : MonoBehaviour
     public GameObject upCheck;
     public GameObject leftCheck;
     public GameObject rightCheck;
+
+    public bool canCapture; 
 
     public int pawnPowerUps;
     public TextMeshProUGUI pawnPowerUpUI;
@@ -68,16 +73,22 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector3(-2.45f, 0, -2.4f);
+        movePoint.transform.position = transform.position;
+        
         movePoint.parent = null; 
         
         //speedReduction = speedController.GetComponent<scrollSpeedController>().scrollSpeed; 
         
         gameIsPaused = false;
+        Time.timeScale = 0; 
+        StartCoroutine(UnpauseGameStart());
 
         intervalTime = 0; 
         intervalBar = 0;
         intervalIndicator.maxValue = 0.8f; 
         canMove = false;
+        isStunned = false;
 
         pawnPowerUps = 0;
         knightPowerUps = 0;
@@ -106,7 +117,10 @@ public class playerController : MonoBehaviour
 
             if(intervalTime >= 0.8f && intervalTime < 0.801f)
             {
-                canMove = true; 
+                if(isStunned == false)
+                {
+                    canMove = true;
+                } 
             } else if (intervalTime >= 1.2f)
             {
                 canMove = false;
@@ -144,11 +158,13 @@ public class playerController : MonoBehaviour
                     {
                         movePoint.position += new Vector3(1f, 0f, 1f);
                         canMove = false;
+                        StartCoroutine(CaptureState());
                     }
                     else if (Input.GetKey(KeyCode.Q) && upLeftCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
                         movePoint.position += new Vector3(-1f, 0f, 1f);
                         canMove = false;
+                        StartCoroutine(CaptureState());
                     }
                 } else if(playerPiece == 1)
                 {
@@ -196,6 +212,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && farLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -207,6 +224,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
 
                     }
                     else if (Input.GetKey(KeyCode.E) && topRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -217,6 +235,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
                     }
                     else if (Input.GetKey(KeyCode.Q) && topLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
@@ -226,6 +245,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
                     }
                 } else if(playerPiece == 3)
                 {
@@ -237,6 +257,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
                     }
                     else if (Input.GetKey(KeyCode.Q) && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false && bishopRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
@@ -246,6 +267,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
                     }
                 } else if(playerPiece == 4)
                 {
@@ -258,6 +280,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false && rookLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -269,6 +292,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
 
                     }
                     else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -280,6 +304,7 @@ public class playerController : MonoBehaviour
                         //playerRenderer.sprite = pawnSprite;
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
+                        StartCoroutine(CaptureState());
                     }
                 }
             }
@@ -380,17 +405,28 @@ public class playerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (gameIsPaused == false)
+            if (gameIsPaused == false && Time.timeScale == 1)
             {
                 Time.timeScale = 0;
                 gameIsPaused = true;
-            }
-            else
-            {
-                Time.timeScale = 1;
-                gameIsPaused = false;
+                StartCoroutine(pauseMenu.GetComponent<pauseMenuScript>().OpenPauseMenu()); 
             }
         }
+    }
+
+    IEnumerator CaptureState()
+    {
+        canCapture = true;
+        yield return new WaitForSeconds(1); 
+        canCapture = false;
+    }
+
+    public IEnumerator TakeDamage()
+    {
+        Debug.Log("took-a da damage");
+        isStunned = true; 
+        yield return new WaitForSeconds(1);
+        isStunned = false;
     }
 
     IEnumerator speedResetCooldown(float delay)
@@ -403,6 +439,12 @@ public class playerController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         playerRenderer.sprite = pawnSprite; 
+    }
+
+    IEnumerator UnpauseGameStart()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1; 
     }
 
 }

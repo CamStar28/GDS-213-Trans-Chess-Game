@@ -13,6 +13,8 @@ public class boardScrollController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speedController = GameObject.FindGameObjectWithTag("Speed");
+
         boardScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
     }
 

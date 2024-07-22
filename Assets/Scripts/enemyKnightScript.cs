@@ -40,6 +40,11 @@ public class enemyKnightScript : MonoBehaviour
         hasBeenCaptured = false;
 
         movePoint.parent = null;
+
+        if (transform.position.x >= 0.55)
+        {
+            movingToPosition = 2;
+        }
     }
 
     // Update is called once per frame
@@ -103,7 +108,7 @@ public class enemyKnightScript : MonoBehaviour
             else if (movingToPosition == 3)
             {
                 movePoint.position += new Vector3(-2f, 0f, -1f);
-                movingToPosition += 1;
+                movingToPosition = 0;
             }
 
             canMove = false;
@@ -112,12 +117,23 @@ public class enemyKnightScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && Vector3.Distance(transform.position, movePoint.position) <= 0.5f)
         {
-            other.gameObject.GetComponent<playerController>().knightPowerUps += 1;
+            if(other.GetComponent<playerController>().canCapture == true)
+            {
+                other.gameObject.GetComponent<playerController>().knightPowerUps += 1;
+                StartCoroutine(Fade());
+                hasBeenCaptured = true;
+                Debug.Log("absolutely knighted upon");
+            } else
+            {
+                StartCoroutine(other.gameObject.GetComponent<playerController>().TakeDamage());
+                Destroy(gameObject);
+            }
+        }
+        else if (other.gameObject.layer == 6)
+        {
             StartCoroutine(Fade());
-            hasBeenCaptured = true;
-            Debug.Log("absolutely knighted upon");
         }
     }
 
