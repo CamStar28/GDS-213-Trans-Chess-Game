@@ -64,6 +64,6 @@ public class pauseMenuScript : MonoBehaviour
 
     public void MainMenuButton()
     {
-        Debug.Log("Make this go to main menu CAM"); 
+        SceneManager.LoadScene("MainMenu");
     }
 }
