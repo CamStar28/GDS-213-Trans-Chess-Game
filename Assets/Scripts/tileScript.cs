@@ -13,7 +13,9 @@ public class tileScript : MonoBehaviour
     public float tileScrollSpeed;
     public GameObject speedController;
 
-    public Rigidbody tileBody; 
+    public Rigidbody tileBody;
+
+    //public bool finalTile; 
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class tileScript : MonoBehaviour
         speedController = GameObject.FindGameObjectWithTag("Speed");
 
         tileScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+
+        //finalTile = false;
     }
 
     // Update is called once per frame

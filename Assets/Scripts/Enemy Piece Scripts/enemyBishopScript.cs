@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class enemyRookScript : MonoBehaviour
+public class enemyBishopScript : MonoBehaviour
 {
-    public Renderer rookRenderer;
+    public Renderer bishopRenderer;
 
-    //public float rookScrollSpeed;
+    //public float bishopScrollSpeed;
     //public GameObject speedController;
 
-    public Rigidbody rookBody;
+    public Rigidbody bishopBody;
 
     public GameObject intervalLink;
     public float intervalTimer;
-    
+
     public bool canMove;
     public bool isMovingRight;
-    public bool hasBeenCaptured; 
+    public bool hasBeenCaptured;
 
     public float moveSpeed = 5f;
     public Transform movePoint;
@@ -28,14 +27,14 @@ public class enemyRookScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //rookScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
-        
+        //bishopScrollSpeed = speedController.GetComponent<scrollSpeedController>().scrollSpeed;
+
         intervalLink = GameObject.FindGameObjectWithTag("Player");
 
         intervalTimer = intervalLink.GetComponent<playerController>().intervalTime;
-        
+
         canMove = false;
-        isMovingRight = true; 
+        isMovingRight = true;
         hasBeenCaptured = false;
 
         movePoint.parent = null;
@@ -49,23 +48,24 @@ public class enemyRookScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rookBody.velocity = new Vector3(0, 0, rookScrollSpeed);
+        //bishopBody.velocity = new Vector3(0, 0, bishopScrollSpeed);
 
-        intervalTimer += Time.deltaTime; 
-        if(intervalTimer >= 1.19f && intervalTimer < 1.2f)
+        intervalTimer += Time.deltaTime;
+        if (intervalTimer >= 1.19f && intervalTimer < 1.2f)
         {
-            canMove = true;  
-        } else if (intervalTimer >= 1.2f)
+            canMove = true;
+        }
+        else if (intervalTimer >= 1.2f)
         {
             canMove = false;
-            intervalTimer = 0; 
+            intervalTimer = 0;
         }
 
-        if(leftCheck.GetComponent<pieceTileCheck>().tileOccupied == true)
+        if (leftCheck.GetComponent<pieceTileCheck>().tileOccupied == true)
         {
             isMovingRight = true;
         }
-        
+
         if (rightCheck.GetComponent<pieceTileCheck>().tileOccupied == true)
         {
             isMovingRight = false;
@@ -75,12 +75,13 @@ public class enemyRookScript : MonoBehaviour
 
         if (Vector3.Distance(transform.position, movePoint.position) == 0f && canMove == true && hasBeenCaptured == false)
         {
-            if(isMovingRight == true)
+            if (isMovingRight == true)
             {
-                movePoint.position += new Vector3(1f, 0f, 0f);
-            } else
+                movePoint.position += new Vector3(1f, 0f, -1f);
+            }
+            else
             {
-                movePoint.position += new Vector3(-1f, 0f, 0f);
+                movePoint.position += new Vector3(-1f, 0f, -1f);
             }
 
             canMove = false;
@@ -89,14 +90,14 @@ public class enemyRookScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && Vector3.Distance(transform.position, movePoint.position) <= 0.5f)
         {
             if (other.GetComponent<playerController>().canCapture == true)
             {
-                other.gameObject.GetComponent<playerController>().rookPowerUps += 1;
+                other.gameObject.GetComponent<playerController>().bishopPowerUps += 1;
                 StartCoroutine(Fade());
                 hasBeenCaptured = true;
-                Debug.Log("absolutely rooked upon");
+                Debug.Log("absolutely bishoped upon");
             }
             else
             {
@@ -104,7 +105,7 @@ public class enemyRookScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if (other.gameObject.layer == 6)
+        else if (other.gameObject.layer == 6 && Vector3.Distance(transform.position, movePoint.position) <= 0.5f)
         {
             StartCoroutine(Fade());
         }
@@ -112,13 +113,11 @@ public class enemyRookScript : MonoBehaviour
 
     IEnumerator Fade()
     {
-        hasBeenCaptured = true;
-        
-        Color c = rookRenderer.material.color;
+        Color c = bishopRenderer.material.color;
         for (float alpha = 1f; alpha >= 0; alpha -= 0.1f)
         {
             c.a = alpha;
-            rookRenderer.material.color = c;
+            bishopRenderer.material.color = c;
             yield return new WaitForSeconds(0.01f);
         }
 

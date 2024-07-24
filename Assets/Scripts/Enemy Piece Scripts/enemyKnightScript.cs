@@ -131,7 +131,7 @@ public class enemyKnightScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if (other.gameObject.layer == 6)
+        else if (other.gameObject.layer == 6 && Vector3.Distance(transform.position, movePoint.position) <= 0.5f)
         {
             StartCoroutine(Fade());
         }

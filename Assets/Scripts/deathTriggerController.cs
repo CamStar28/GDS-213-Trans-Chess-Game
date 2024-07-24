@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class deathTriggerController : MonoBehaviour
 {
+
+    public GameObject gameOverManager; 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,9 @@ public class deathTriggerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            //Debug.Log("lol"); 
+            other.gameObject.GetComponent<playerController>().isStunned = true;
+            
+            StartCoroutine(gameOverManager.GetComponent<gameOverManager>().FadeInGameOver());
         } 
     }
 }
