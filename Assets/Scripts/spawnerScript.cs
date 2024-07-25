@@ -39,7 +39,7 @@ public class spawnerScript : MonoBehaviour
 
             if (objectToSpawn == 0)
             {
-                Instantiate(pawnPrefab, new Vector3(xPositions[prefabPosition], 0, 6.6f + p), Quaternion.Euler(new Vector3(-90, 0, -180)));
+                Instantiate(pawnPrefab, new Vector3(xPositions[prefabPosition] + 0.03f, 0, 6.5f + p), Quaternion.Euler(new Vector3(-90, 0, -180)));
             }
             else if (objectToSpawn == 1)
             {
@@ -47,11 +47,11 @@ public class spawnerScript : MonoBehaviour
             }
             else if (objectToSpawn == 2)
             {
-                Instantiate(bishopPrefab, new Vector3(xPositions[prefabPosition], 0, 6.55f + p), Quaternion.Euler(new Vector3(-90, 0, -180)));
+                Instantiate(bishopPrefab, new Vector3(xPositions[prefabPosition] + 0.03f, 0, 6.55f + p), Quaternion.Euler(new Vector3(-90, 0, -180)));
             }
             else if (objectToSpawn == 3)
             {
-                Instantiate(rookPrefab, new Vector3(xPositions[prefabPosition], 0, 6.6f + p), Quaternion.Euler(new Vector3(-90, 0, -180)));
+                Instantiate(rookPrefab, new Vector3(xPositions[prefabPosition] + 0.03f, 0, 6.5f + p), Quaternion.Euler(new Vector3(-90, 0, -180)));
             }
             else if (objectToSpawn == 4)
             {

@@ -73,7 +73,7 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-2.45f, 0, -2.4f);
+        transform.position = new Vector3(-2.41f, 0, -2.48f);
         movePoint.transform.position = transform.position;
         
         movePoint.parent = null; 
@@ -390,16 +390,16 @@ public class playerController : MonoBehaviour
 
         if(arrowPosition == 0)
         {
-            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-25, 153);
+            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-33, 153);
         } else if(arrowPosition == 1)
         {
-            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-25, 58); 
+            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-33, 58); 
         } else if(arrowPosition == 2)
         {
-            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-25, -40);
+            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-33, -40);
         } else if(arrowPosition == 3)
         {
-            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-25, -140); 
+            powerUpArrow.rectTransform.anchoredPosition = new Vector2(-33, -140); 
         }
 
 
