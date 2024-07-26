@@ -19,7 +19,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("LevelScene");
+        SceneManager.LoadScene("Intro Cutscene");
     }
 
     public void OpenCredits()

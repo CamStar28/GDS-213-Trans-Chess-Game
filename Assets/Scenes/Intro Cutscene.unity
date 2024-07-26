@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 155682204}
   - component: {fileID: 155682207}
   - component: {fileID: 155682206}
-  - component: {fileID: 155682205}
+  - component: {fileID: 155682208}
   m_Layer: 5
   m_Name: Continue Text Button
   m_TagString: Untagged
@@ -690,7 +690,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0.0005064, y: -0.00012445}
   m_SizeDelta: {x: 690.92, y: 254.19}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &155682205
+--- !u!114 &155682206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155682203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9811321, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &155682207
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155682203}
+  m_CullTransparentMesh: 1
+--- !u!114 &155682208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -746,44 +784,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &155682206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155682203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &155682207
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155682203}
-  m_CullTransparentMesh: 1
 --- !u!1 &177233847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,7 +1960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33, y: -140}
+  m_AnchoredPosition: {x: -33, y: 153}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &449987290
@@ -2162,8 +2162,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -29.5805, y: 22.8484}
-  m_SizeDelta: {x: 59.1608, y: 45.6969}
+  m_AnchoredPosition: {x: -68.398865, y: 22.848404}
+  m_SizeDelta: {x: 126.3929, y: 45.6969}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &512259420
 MonoBehaviour:
@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '>'
+  m_text: Press "c"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2212,14 +2212,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2248,7 +2248,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.44769287, y: 0, z: 8.268127, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2415,7 +2415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &607716061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2429,16 +2429,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sentences:
-  - Test Line 1
-  - Test Line 2
-  - Test Line 3
-  - Other Character Line 1
-  - Other Character Line 2
-  - Test Line 4
-  - Test Line 5
-  - Test Line 6
-  - Test Line 7
-  - Test Line 8
+  - Um, hello?
+  - Ah, greetings my loyal Pawn! What brings you to the board today?
+  - Oh, hi! Well, um, basically I'm hear to... uh I was looking to talk about Promotion?
+  - I want to be a Queen.
+  - Ah of course, looking to move a little more freely? Haha!
+  - All right my Pawn, let's go over the promotion process.
+  - 'Okay! '
+  - C-could you not call me that though...
+  - What was that?
+  - Oh! Um...
+  - ...nothing.
+  - All right then. Well, let me walk you through the rules of the game.
+  - On the right side of the screen you'll see a bar, slowly filling up with green.
+    Only when the bar is filled will you be able to move.
+  - Essentially, you can move one time every second or so.
+  - Oh, okay! I thought me and the other team would like, take turns, but that works!
+  - Haha, not this in game my friend. Instead, the opposing pieces will move very
+    shortly after you.
+  - Now, let's talk movement.
+  - As a Pawn, you can naturally move one space upwards. In addition, you can freely
+    move left and right one space!
+  - Plus, if there is an opposing piece on either of your diagonals, you'll be able
+    to move to that space and capture whatever unlucky peasant once stood there!
+  - This let's you move side-to-side while also progressing upwards.
+  - Okay, that sounds pretty cool! I guess I'm still a bit limited though.
+  - That's where the Piece Copies come in!
+  - Every time you capture a piece, you obtain their Copy. So capturing a Rook gives
+    you a Rook copy, for example.
+  - You can use copies to temporarily turn into that piece, gaining their movement
+    for a turn.
+  - Captuirng other Pawns let's you move up two spaces instead of one.
+  - I'll let you experiment with the other pieces and how they move.
+  - Cool! So I can just capture an opposing Queen and be on my way, right?
+  - No.
+  - Oh...
+  - 'You won''t find any enemy Queens in this game. Also, Piece Copies only last
+    for one turn, so use them wisely. '
+  - Also, any Piece Copy besides the Pawn can be used to capture pieces as well.
+  - Switch between Piece Copies using Shift, then activate it using Space! Use this
+    ability to give your opponents a royal butt-kicking!
+  - Okay well... that's a lot to remember, but I only have to go up seven spaces
+    right? That's the promotion square!
+  - oh yeah also the board moves down lol
+  - ...
+  - Yeah and if you fall off the bottom you like, lose and stuff
+  - ...
+  - ...
+  - Why though
+  - To make sure you really want to promote of course!
+  - ...but I've been making that decision for over a year now?
+  - Yeah but... what if you don't wanna actually
+  - ...
+  - ...
+  - ...good luck out there!
   currentSentence: 0
   speakerName: 
   nameBox: {fileID: 817252536}
@@ -4649,7 +4693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1359813315
 Transform:
   m_ObjectHideFlags: 0
@@ -5969,7 +6013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75feee596e4a33344af8a6afe1d8fa2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -1
+  scrollSpeed: 0
 --- !u!4 &1726498331
 Transform:
   m_ObjectHideFlags: 0
@@ -6054,7 +6098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727173792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20f527c400a1a1f4ea69bf85dc7a1d5d, type: 3}
   m_Name: 

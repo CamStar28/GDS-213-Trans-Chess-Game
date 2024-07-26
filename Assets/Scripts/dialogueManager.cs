@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 using UnityEngine.UI; 
 using TMPro; 
 
@@ -26,14 +27,14 @@ public class dialogueManager : MonoBehaviour
     {
         currentSentence = 0; 
 
-        if (currentSentence == 0 || currentSentence == 5)
+        if (currentSentence == 0 || currentSentence == 2 || currentSentence == 6 || currentSentence == 9 || currentSentence == 14)
         {
             speakerName = "Ashley";
             ashleyPortrait.SetActive(true);
             kingPortrait.SetActive(false);
         }
 
-        if (currentSentence == 3)
+        if (currentSentence == 1 || currentSentence == 4 || currentSentence == 8 || currentSentence == 11 || currentSentence == 15)
         {
             speakerName = "King";
             ashleyPortrait.SetActive(false);
@@ -43,26 +44,32 @@ public class dialogueManager : MonoBehaviour
         UpdateTextBox();
 
         OpenDialogue();
+
+        Debug.Log(Time.timeScale);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            ProgressDialogue();
+            //Debug.Log("LINE");
+        }
     }
 
     public void ProgressDialogue()
     {
         currentSentence += 1;
 
-        if(currentSentence == 0 || currentSentence == 5)
+        if (currentSentence == 0 || currentSentence == 2 || currentSentence == 6 || currentSentence == 9 || currentSentence == 14)
         {
             speakerName = "Ashley";
             ashleyPortrait.SetActive(true);
             kingPortrait.SetActive(false);
         }
 
-        if (currentSentence == 3)
+        if (currentSentence == 1 || currentSentence == 4 || currentSentence == 8 || currentSentence == 11 || currentSentence == 15)
         {
             speakerName = "King";
             ashleyPortrait.SetActive(false);
@@ -74,6 +81,9 @@ public class dialogueManager : MonoBehaviour
 
     public void UpdateTextBox()
     {
+
+        StopAllCoroutines(); 
+        
         if(currentSentence >= sentences.Length)
         {
             EndDialogue();
@@ -109,7 +119,7 @@ public class dialogueManager : MonoBehaviour
 
     IEnumerator FadeInDialogue()
     {
-        Time.timeScale = 0; 
+        //Time.timeScale = 0; 
         
         Color c = bgColour.color;
         for (float alpha = 0; alpha <= 0.75; alpha += 0.01f)
@@ -134,7 +144,9 @@ public class dialogueManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.01f);
         }
 
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
+
+        SceneManager.LoadScene("LevelScene");
     }
 
 }
