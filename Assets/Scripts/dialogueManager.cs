@@ -27,14 +27,14 @@ public class dialogueManager : MonoBehaviour
     {
         currentSentence = 0; 
 
-        if (currentSentence == 0 || currentSentence == 2 || currentSentence == 6 || currentSentence == 9 || currentSentence == 14)
+        if (currentSentence == 0 || currentSentence == 2 || currentSentence == 6 || currentSentence == 9 || currentSentence == 14 || currentSentence == 20 || currentSentence == 14 || currentSentence == 26 || currentSentence == 28 || currentSentence == 32 || currentSentence == 34 || currentSentence == 36 || currentSentence == 38 || currentSentence == 40 || currentSentence == 42)
         {
             speakerName = "Ashley";
             ashleyPortrait.SetActive(true);
             kingPortrait.SetActive(false);
         }
 
-        if (currentSentence == 1 || currentSentence == 4 || currentSentence == 8 || currentSentence == 11 || currentSentence == 15)
+        if (currentSentence == 1 || currentSentence == 4 || currentSentence == 8 || currentSentence == 11 || currentSentence == 15 || currentSentence == 21 || currentSentence == 27 || currentSentence == 29 || currentSentence == 33 || currentSentence == 35 || currentSentence == 37 || currentSentence == 39 || currentSentence == 41 || currentSentence == 43)
         {
             speakerName = "King";
             ashleyPortrait.SetActive(false);
@@ -62,14 +62,14 @@ public class dialogueManager : MonoBehaviour
     {
         currentSentence += 1;
 
-        if (currentSentence == 0 || currentSentence == 2 || currentSentence == 6 || currentSentence == 9 || currentSentence == 14)
+        if (currentSentence == 0 || currentSentence == 2 || currentSentence == 6 || currentSentence == 9 || currentSentence == 14 || currentSentence == 20 || currentSentence == 14 || currentSentence == 26 || currentSentence == 28 || currentSentence == 32 || currentSentence == 34 || currentSentence == 36 || currentSentence == 38 || currentSentence == 40 || currentSentence == 42)
         {
             speakerName = "Ashley";
             ashleyPortrait.SetActive(true);
             kingPortrait.SetActive(false);
         }
 
-        if (currentSentence == 1 || currentSentence == 4 || currentSentence == 8 || currentSentence == 11 || currentSentence == 15)
+        if (currentSentence == 1 || currentSentence == 4 || currentSentence == 8 || currentSentence == 11 || currentSentence == 15 || currentSentence == 21 || currentSentence == 27 || currentSentence == 29 || currentSentence == 33 || currentSentence == 35 || currentSentence == 37 || currentSentence == 39 || currentSentence == 41 || currentSentence == 43)
         {
             speakerName = "King";
             ashleyPortrait.SetActive(false);
