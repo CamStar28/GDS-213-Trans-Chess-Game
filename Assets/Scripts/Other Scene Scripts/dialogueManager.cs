@@ -15,7 +15,8 @@ public class dialogueManager : MonoBehaviour
 
     public TextMeshProUGUI nameBox;
     public TextMeshProUGUI textBox;
-    public GameObject textGroup; 
+    public GameObject textGroup;
+    public bool textboxIsOpen; 
 
     public Image bgColour;
 
@@ -25,6 +26,8 @@ public class dialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        textboxIsOpen = false; 
+        
         currentSentence = 0; 
 
         if (currentSentence == 0 || currentSentence == 2 || currentSentence == 6 || currentSentence == 9 || currentSentence == 14 || currentSentence == 20 || currentSentence == 14 || currentSentence == 26 || currentSentence == 28 || currentSentence == 32 || currentSentence == 34 || currentSentence == 36 || currentSentence == 38 || currentSentence == 40 || currentSentence == 42)
@@ -51,7 +54,7 @@ public class dialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetKeyDown(KeyCode.C) && textboxIsOpen == true)
         {
             ProgressDialogue();
             //Debug.Log("LINE");
@@ -130,11 +133,13 @@ public class dialogueManager : MonoBehaviour
         }
 
         textGroup.SetActive(true);
+        textboxIsOpen = true; 
     }
 
     IEnumerator FadeOutDialogue()
     {
         textGroup.SetActive(false);
+        textboxIsOpen = false;
 
         Color c = bgColour.color;
         for (float alpha = 0.75f; alpha >= 0; alpha -= 0.01f)

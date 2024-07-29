@@ -90,7 +90,7 @@ public class playerController : MonoBehaviour
         canMove = false;
         isStunned = false;
 
-        pawnPowerUps = 0;
+        pawnPowerUps = 1;
         knightPowerUps = 0;
         bishopPowerUps = 0;
         rookPowerUps = 0;

@@ -25,6 +25,8 @@ public class deathTriggerController : MonoBehaviour
         {
             other.gameObject.GetComponent<playerController>().isStunned = true;
             
+            gameOverManager.SetActive(true);
+
             StartCoroutine(gameOverManager.GetComponent<gameOverManager>().FadeInGameOver());
         } 
     }

@@ -38,6 +38,8 @@ public class pauseMenuScript : MonoBehaviour
 
     public IEnumerator ClosePauseMenu()
     {
+        Debug.Log("unpause da game");
+        
         buttonGroup.SetActive(false);
 
         Color c = menuColour.color;
