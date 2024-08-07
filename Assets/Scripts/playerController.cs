@@ -86,7 +86,7 @@ public class playerController : MonoBehaviour
 
         intervalTime = 0; 
         intervalBar = 0;
-        intervalIndicator.maxValue = 0.8f; 
+        intervalIndicator.maxValue = 0.6f; 
         canMove = false;
         isStunned = false;
 
@@ -115,11 +115,12 @@ public class playerController : MonoBehaviour
 
             intervalIndicator.value = intervalBar;
 
-            if(intervalTime >= 0.8f && intervalTime < 0.801f)
+            if(intervalTime >= 0.6f && intervalTime < 0.601f)
             {
                 if(isStunned == false)
                 {
                     canMove = true;
+                    Debug.Log(canMove);
                 } 
             } else if (intervalTime >= 1.2f)
             {
