@@ -328,7 +328,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 150}
+  m_AnchoredPosition: {x: -200, y: 175}
   m_SizeDelta: {x: 264.7896, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429107902
@@ -477,7 +477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -36.544273}
+  m_AnchoredPosition: {x: -200, y: -12}
   m_SizeDelta: {x: 264.7896, y: 66.0885}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &441191939
@@ -1178,7 +1178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 21}
+  m_AnchoredPosition: {x: -200, y: 46}
   m_SizeDelta: {x: 264.7896, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274344072
@@ -1216,9 +1216,9 @@ MonoBehaviour:
   m_colorMode: 2
   m_fontColorGradient:
     topLeft: {r: 0.6949825, g: 0, b: 1, a: 1}
-    topRight: {r: 0.9557308, g: 0.6933962, b: 1, a: 1}
+    topRight: {r: 0.6949825, g: 0, b: 1, a: 1}
     bottomLeft: {r: 0, g: 0, b: 0, a: 1}
-    bottomRight: {r: 0.6979165, g: 0, b: 1, a: 1}
+    bottomRight: {r: 0, g: 0, b: 0, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -1327,7 +1327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -174.40932}
+  m_AnchoredPosition: {x: -200, y: -148}
   m_SizeDelta: {x: 264.7896, y: 84.9071}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338229205
@@ -1364,7 +1364,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ChaosEntertainment
+  m_text: 'ChaosEntertainment
+
+    el_boss'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1476,7 +1478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 95.31082}
+  m_AnchoredPosition: {x: -200, y: 120}
   m_SizeDelta: {x: 264.7896, y: 59.3783}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469621613
@@ -1625,7 +1627,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 150}
+  m_AnchoredPosition: {x: 200, y: 175}
   m_SizeDelta: {x: 264.7896, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629847876
@@ -1774,7 +1776,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: -105}
+  m_AnchoredPosition: {x: -200, y: -80}
   m_SizeDelta: {x: 264.7896, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2025119265
@@ -1923,7 +1925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -13.563293}
+  m_AnchoredPosition: {x: 200, y: 11}
   m_SizeDelta: {x: 264.7896, y: 277.1266}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2098735901
@@ -1946,17 +1948,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Almost New" - Kevin Macleod
-
-
-    "At Launch" - Kevin Macleod
-
-
-    "Ascending
-    the Vale" - Kevin Macleod
-
-
-    "Transition One" - Kevin Macleod'
+  m_text: "Kevin Macleod \n(via incompetech.com)\n\n\"Almost New\"\n\n\"At Launch\"\n\n\"Ascending
+    the Vale\"\n\n\"Reign\"\n\n\"Transition One\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1983,7 +1976,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.95
+  m_fontSize: 20.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
