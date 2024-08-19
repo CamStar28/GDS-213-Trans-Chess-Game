@@ -24,6 +24,8 @@ public class enemyBishopScript : MonoBehaviour
     public GameObject leftCheck;
     public GameObject rightCheck;
 
+    public AudioSource capturedSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,10 +100,12 @@ public class enemyBishopScript : MonoBehaviour
                 StartCoroutine(Fade());
                 hasBeenCaptured = true;
                 Debug.Log("absolutely bishoped upon");
+
+                capturedSound.Play(0);
             }
             else
             {
-                StartCoroutine(other.gameObject.GetComponent<playerController>().TakeDamage());
+                other.gameObject.GetComponent<playerController>().GotHit();
                 Destroy(gameObject);
             }
         }

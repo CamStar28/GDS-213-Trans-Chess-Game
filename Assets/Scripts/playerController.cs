@@ -20,6 +20,9 @@ public class playerController : MonoBehaviour
     public float intervalTime;
     public bool canMove;
     public Slider intervalIndicator;
+    public Slider damagedInterval;
+    public GameObject intervalObject;
+    public GameObject damagedIntervalObject;
     public float intervalBar;
 
     public bool isStunned;
@@ -53,6 +56,7 @@ public class playerController : MonoBehaviour
     public Sprite knightSprite;
     public Sprite bishopSprite;
     public Sprite rookSprite;
+    public Sprite queenSprite; 
 
     public int playerPiece;
 
@@ -69,11 +73,13 @@ public class playerController : MonoBehaviour
     public GameObject rookLeftCheck;
     public GameObject rookRightCheck;
 
+    public AudioSource pieceMove;
+    public AudioSource copyUseSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(-2.41f, 0, -2.48f);
+        //transform.position = new Vector3(-2.41f, 0, -2.48f);
         movePoint.transform.position = transform.position;
         
         movePoint.parent = null; 
@@ -86,7 +92,8 @@ public class playerController : MonoBehaviour
 
         intervalTime = 0; 
         intervalBar = 0;
-        intervalIndicator.maxValue = 0.6f; 
+        intervalIndicator.maxValue = 0.6f;
+        damagedInterval.maxValue = 0.6f;
         canMove = false;
         isStunned = false;
 
@@ -114,13 +121,24 @@ public class playerController : MonoBehaviour
             intervalBar += Time.deltaTime;
 
             intervalIndicator.value = intervalBar;
+            damagedInterval.value = intervalBar;
+
+            if(isStunned == true)
+            {
+                intervalObject.SetActive(false);
+                damagedIntervalObject.SetActive(true);
+            } else
+            {
+                intervalObject.SetActive(true);
+                damagedIntervalObject.SetActive(false);
+            }
 
             if(intervalTime >= 0.6f && intervalTime < 0.601f)
             {
                 if(isStunned == false)
                 {
                     canMove = true;
-                    Debug.Log(canMove);
+                    //Debug.Log(canMove);
                 } 
             } else if (intervalTime >= 1.2f)
             {
@@ -140,6 +158,7 @@ public class playerController : MonoBehaviour
                         movePoint.position += new Vector3(1f, 0f, 0f);
                         canMove = false;
                         //Debug.Log(movePoint.position);
+                        pieceMove.Play(0);
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -147,6 +166,7 @@ public class playerController : MonoBehaviour
                         movePoint.position += new Vector3(-1f, 0f, 0f);
                         canMove = false;
                         //Debug.Log(movePoint.position);
+                        pieceMove.Play(0);
 
                     }
                     else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -154,17 +174,20 @@ public class playerController : MonoBehaviour
                         movePoint.position += new Vector3(0f, 0f, 1f);
                         canMove = false;
                         //Debug.Log(movePoint.position);
+                        pieceMove.Play(0);
                     }
                     else if (Input.GetKey(KeyCode.E) && upRightCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
                         movePoint.position += new Vector3(1f, 0f, 1f);
                         canMove = false;
+                        pieceMove.Play(0);
                         StartCoroutine(CaptureState());
                     }
                     else if (Input.GetKey(KeyCode.Q) && upLeftCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
                         movePoint.position += new Vector3(-1f, 0f, 1f);
                         canMove = false;
+                        pieceMove.Play(0);
                         StartCoroutine(CaptureState());
                     }
                 } else if(playerPiece == 1)
@@ -174,6 +197,7 @@ public class playerController : MonoBehaviour
                         movePoint.position += new Vector3(1f, 0f, 0f);
                         canMove = false;
                         //Debug.Log(movePoint.position);
+                        pieceMove.Play(0);
 
                     }
                     else if (Input.GetKeyDown(KeyCode.A) && leftCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && leftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -181,6 +205,7 @@ public class playerController : MonoBehaviour
                         movePoint.position += new Vector3(-1f, 0f, 0f);
                         canMove = false;
                         //Debug.Log(movePoint.position);
+                        pieceMove.Play(0);
 
                     }
                     else if (Input.GetKeyDown(KeyCode.W) && upCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && upCheck.GetComponent<pawnTileCheck>().tileHasWall == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasPiece == false && doubleUpCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
@@ -190,17 +215,20 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                     }
                     else if (Input.GetKey(KeyCode.E) && upRightCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upRightCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
                         movePoint.position += new Vector3(1f, 0f, 1f);
                         canMove = false;
+                        pieceMove.Play(0);
                     }
                     else if (Input.GetKey(KeyCode.Q) && upLeftCheck.GetComponent<pawnTileCheck>().tileHasPiece == true && upLeftCheck.GetComponent<pawnTileCheck>().tileHasWall == false)
                     {
                         movePoint.position += new Vector3(-1f, 0f, 1f);
                         canMove = false;
+                        pieceMove.Play(0);
                     }
                 } else if(playerPiece == 2)
                 {
@@ -211,6 +239,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -223,6 +252,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -234,6 +264,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -244,6 +275,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -256,6 +288,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -266,6 +299,7 @@ public class playerController : MonoBehaviour
                         canMove = false;
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -279,6 +313,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -291,6 +326,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -303,6 +339,7 @@ public class playerController : MonoBehaviour
                         //Debug.Log(movePoint.position);
                         playerPiece = 0;
                         //playerRenderer.sprite = pawnSprite;
+                        pieceMove.Play(0);
                         StartCoroutine(speedResetCooldown(1f));
                         StartCoroutine(spriteReset(0.25f));
                         StartCoroutine(CaptureState());
@@ -333,6 +370,7 @@ public class playerController : MonoBehaviour
                     playerPiece = 1; 
                     pawnPowerUps -= 1;
                     playerRenderer.sprite = pawnSprite;
+                    copyUseSound.Play();
                 } else
                 {
                     Debug.Log("got no pawns girl"); 
@@ -348,6 +386,7 @@ public class playerController : MonoBehaviour
                     knightPowerUps -= 1;
                     playerRenderer.sprite = knightSprite;
                     moveSpeed = 10f;
+                    copyUseSound.Play();
                 }
                 else
                 {
@@ -364,6 +403,7 @@ public class playerController : MonoBehaviour
                     bishopPowerUps -= 1;
                     playerRenderer.sprite = bishopSprite;
                     moveSpeed = 10f;
+                    copyUseSound.Play();
                 }
                 else
                 {
@@ -380,6 +420,7 @@ public class playerController : MonoBehaviour
                     rookPowerUps -= 1;
                     playerRenderer.sprite = rookSprite;
                     moveSpeed = 10f;
+                    copyUseSound.Play();
                 }
                 else
                 {
@@ -430,6 +471,11 @@ public class playerController : MonoBehaviour
         isStunned = false;
     }
 
+    public void GotHit()
+    {
+        StartCoroutine(TakeDamage());
+    }
+
     IEnumerator speedResetCooldown(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -446,6 +492,11 @@ public class playerController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1);
         Time.timeScale = 1; 
+    }
+
+    public void PromoteToQueen()
+    {
+        playerRenderer.sprite = queenSprite;
     }
 
 }

@@ -12,6 +12,8 @@ public class enemyPawnScript : MonoBehaviour
 
     public Rigidbody pawnBody;
 
+    public AudioSource capturedSound; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class enemyPawnScript : MonoBehaviour
             other.gameObject.GetComponent<playerController>().pawnPowerUps += 1;
             StartCoroutine(Fade());
             Debug.Log("absolutely pawned upon");
+
+            capturedSound.Play(0);
         }
     }
 

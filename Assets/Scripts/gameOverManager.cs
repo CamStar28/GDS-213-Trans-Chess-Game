@@ -17,6 +17,8 @@ public class gameOverManager : MonoBehaviour
     public int currentMessage; 
     public TextMeshProUGUI topTextBox; 
     public TextMeshProUGUI bottomTextBox;
+
+    public AudioSource gameOverMusic;
     
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,8 @@ public class gameOverManager : MonoBehaviour
             bgColour.color = c;
             yield return new WaitForSecondsRealtime(0.01f);
         }
+
+        gameOverMusic.Play(); 
 
         gameOverGroup.SetActive(true);
 

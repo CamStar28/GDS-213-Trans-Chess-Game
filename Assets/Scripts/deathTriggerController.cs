@@ -6,6 +6,7 @@ public class deathTriggerController : MonoBehaviour
 {
 
     public GameObject gameOverManager; 
+    public GameObject musicManager;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,8 @@ public class deathTriggerController : MonoBehaviour
             other.gameObject.GetComponent<playerController>().isStunned = true;
             
             gameOverManager.SetActive(true);
+
+            StartCoroutine(musicManager.GetComponent<musicMuteScrpt>().FadeOutMusic());
 
             StartCoroutine(gameOverManager.GetComponent<gameOverManager>().FadeInGameOver());
         } 
