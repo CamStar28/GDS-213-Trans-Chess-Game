@@ -79,7 +79,7 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //transform.position = new Vector3(-2.41f, 0, -2.48f);
+        transform.position = new Vector3(-2.41f, 0, -2.48f);
         movePoint.transform.position = transform.position;
         
         movePoint.parent = null; 
@@ -92,8 +92,8 @@ public class playerController : MonoBehaviour
 
         intervalTime = 0; 
         intervalBar = 0;
-        intervalIndicator.maxValue = 0.6f;
-        damagedInterval.maxValue = 0.6f;
+        intervalIndicator.maxValue = 0.8f;
+        damagedInterval.maxValue = 0.8f;
         canMove = false;
         isStunned = false;
 
@@ -103,6 +103,8 @@ public class playerController : MonoBehaviour
         rookPowerUps = 0;
 
         arrowPosition = 0;
+
+        StartCoroutine(IntervalSystem());
     }
 
     // Update is called once per frame
@@ -133,19 +135,7 @@ public class playerController : MonoBehaviour
                 damagedIntervalObject.SetActive(false);
             }
 
-            if(intervalTime >= 0.6f && intervalTime < 0.601f)
-            {
-                if(isStunned == false)
-                {
-                    canMove = true;
-                    //Debug.Log(canMove);
-                } 
-            } else if (intervalTime >= 1.2f)
-            {
-                canMove = false;
-                intervalTime = 0;
-                intervalBar = 0;
-            }
+            
 
             transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
             
@@ -456,6 +446,23 @@ public class playerController : MonoBehaviour
         }
     }
 
+    IEnumerator IntervalSystem()
+    {
+        yield return new WaitForSeconds(0.8f);
+        
+        if (isStunned == false)
+        {
+            canMove = true;
+            //Debug.Log(canMove);
+        }
+
+        yield return new WaitForSeconds(0.4f);
+        canMove = false;
+        intervalBar = 0;
+        intervalTime = 0;
+        StartCoroutine(IntervalSystem());
+    }
+    
     IEnumerator CaptureState()
     {
         canCapture = true;
